@@ -10,7 +10,7 @@ export default function RegisterPage() {
       <p>Register page</p>
       <div className="max-w-[480px] px-4 mx-auto">
         <RegisterForm />
-        <Link href={"/auth/register"}>
+        <Link href={"/auth/login"}>
           <Button variant={"link"}>Sudah punya akun? Masuk sekarang</Button>
         </Link>
       </div>
