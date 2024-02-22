@@ -3,14 +3,48 @@
 import { useState } from "react";
 
 const places = [
-  { id: 1, name: "Candi Borobudur", category: "Sejarah" },
-  { id: 2, name: "Candi Prambanan", category: "Sejarah" },
-  { id: 3, name: "Gunung Merapi", category: "Alam" },
-  { id: 4, name: "Pantai Jepara", category: "Alam" },
-  { id: 5, name: "Keraton Yogyakarta", category: "Budaya" },
+  { id: 1, name: "Candi Borobudur", category: "Banjarnegara" },
+  { id: 2, name: "Candi Prambanan", category: "Batang" },
+  { id: 3, name: "Gunung Merapi", category: "Brebes" },
+  { id: 4, name: "Pantai Jepara", category: "Demak" },
+  { id: 5, name: "Keraton Yogyakarta", category: "Grobogan" },
 ];
 
-const categories = ["Semua Kategori", "Alam", "Budaya", "Sejarah"];
+// const categories = ["Semua Kategori", "Alam", "Budaya", "Sejarah"];
+const categories = [
+  "All",
+  "Banjarnegara",
+  "Banyumas",
+  "Batang",
+  "Blora",
+  "Boyolali",
+  "Brebes",
+  "Cilacap",
+  "Demak",
+  "Grobogan",
+  "Jepara",
+  "Karanganyar",
+  "Kebumen",
+  "Kendal",
+  "Klaten",
+  "Kudus",
+  "Magelang",
+  "Pati",
+  "Pekalongan",
+  "Pemalang",
+  "Purbalingga",
+  "Purworejo",
+  "Rembang",
+  "Semarang",
+  "Sragen",
+  "Sukoharjo",
+  "Tegal",
+  "Temanggung",
+  "Wonogiri",
+  "Wonosobo",
+  "Salatiga",
+  "Surakarta",
+];
 
 export default function FilterContent() {
   const [selectedCategory, setSelectedCategory] = useState("");
@@ -26,11 +60,11 @@ export default function FilterContent() {
 
   return (
     <section className="mx-auto max-w-5xl py-6">
-      <div className="flex space-x-4 mb-4 items-center justify-center">
+      <div className="flex flex-wrap space-x-4 mb-4 items-center justify-center ">
         {categories.map((category, index) => (
           <button
             key={index}
-            className={`p-2 border rounded ${
+            className={`p-2 border rounded m-1 ${
               selectedCategory === category ||
               (selectedCategory === "" && category === "Semua Kategori")
                 ? "bg-green-700 text-white"
@@ -55,5 +89,4 @@ export default function FilterContent() {
       </ul>
     </section>
   );
-
 }

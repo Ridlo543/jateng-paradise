@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { useState } from "react";
 import FilterContent from "./filterContent";
 
 export default function Home() {
@@ -7,13 +6,15 @@ export default function Home() {
     <>
       <section className="relative h-screen">
         <Image
-          src="/images/HeroBanner.png"
-          layout="fill"
+          src="/images/HeroBanner7.jpg"
+          fill
           alt="Jateng Paradise Background"
-          className="absolute z-0 object-cover"
+          className="absolute z-0 object-cover fill"
+          priority={true}
+          loading="eager"
         />
         {/* overlay untuk masking gelap */}
-        <div className="absolute z-10 w-full h-full bg-black bg-opacity-10"></div>{" "}
+        <div className="absolute z-0 w-full h-full bg-black bg-opacity-20"></div>
         {/* Content */}
         <div className="flex flex-col items-center justify-center h-full z-20 relative text-center text-white px-4">
           <h1 className="text-3xl font-bold lg:text-5xl max-w-2xl mx-auto">
