@@ -10,13 +10,21 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { useToast } from "@/components/ui/use-toast";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { either } from "fp-ts";
+import { Loader2 } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { login } from "./actions";
 
 export default function LoginForm() {
+  const router = useRouter();
+  const { toast } = useToast();
+  const [isLoading, setIsLoading] = useState(false);
+
   const loginFormScheme = z.object({
     email: z.string().toLowerCase().min(1),
     password: z.string().toLowerCase().min(1),
@@ -31,13 +39,20 @@ export default function LoginForm() {
   });
 
   async function onSubmit(values: z.infer<typeof loginFormScheme>) {
+    setIsLoading(true);
     const result = await login({
       email: values.email,
       password: values.password,
-    });
+    }).finally(() => setIsLoading(false));
 
-    if (either.isLeft(result)) console.log(result.left.message);
-    else console.log("success login");
+    if (either.isLeft(result)) {
+      toast({
+        title: "Error!",
+        description: result.left.message,
+      });
+    } else {
+      router.replace("/dashboard");
+    }
   }
 
   return (
@@ -45,6 +60,7 @@ export default function LoginForm() {
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
           <FormField
+            disabled={isLoading}
             control={form.control}
             name="email"
             render={({ field }) => (
@@ -58,6 +74,7 @@ export default function LoginForm() {
             )}
           />
           <FormField
+            disabled={isLoading}
             control={form.control}
             name="password"
             render={({ field }) => (
@@ -70,7 +87,10 @@ export default function LoginForm() {
               </FormItem>
             )}
           />
-          <Button type="submit">Submit</Button>
+          <Button type="submit" disabled={isLoading}>
+            {isLoading && <Loader2 className="animate-spin w-4 h-4 mr-2" />}
+            Submit
+          </Button>
         </form>
       </Form>
     </>
