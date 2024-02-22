@@ -1,5 +1,7 @@
 "use client";
 
+import { Card } from "@/components/ui/card";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { useState } from "react";
 
 const places = [
@@ -79,6 +81,18 @@ export default function FilterContent() {
             {category}
           </button>
         ))}
+      </div>
+      <div>
+        <ScrollArea>
+          <div className="flex space-x-2 mb-4">
+            {categories.map((item, index) => (
+              <Card className="px-4 py-2">
+                <p>{item}</p>
+              </Card>
+            ))}
+          </div>
+          <ScrollBar orientation="horizontal" />
+        </ScrollArea>
       </div>
       <ul>
         {filteredPlaces.map((place) => (
