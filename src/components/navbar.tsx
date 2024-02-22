@@ -29,7 +29,6 @@ type NavbarComponentProps = {
   authPayload?: JWTPayload;
 };
 export default function NavbarComponent(props: NavbarComponentProps) {
-  
   const pathname = usePathname();
   const [isAtTop, setIsAtTop] = useState(true);
 
@@ -42,10 +41,8 @@ export default function NavbarComponent(props: NavbarComponentProps) {
   useEffect(() => {
     if (pathname !== "/") {
       setIsAtTop(false);
-    }
-
-    if(pathname === "/auth/login" || pathname === "/auth/register"){
-      setIsAtTop(false);
+    } else {
+      setIsAtTop(true);
     }
 
     const handleScroll = () => {
@@ -56,7 +53,7 @@ export default function NavbarComponent(props: NavbarComponentProps) {
     window.addEventListener("scroll", handleScroll);
 
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [pathname]);
 
   return (
     <>
