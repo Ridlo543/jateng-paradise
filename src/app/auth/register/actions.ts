@@ -2,6 +2,7 @@
 
 import { DetaSource } from "@/lib/sources/deta";
 import { Failure } from "@/lib/types/failure";
+import { genSalt, hash } from "bcrypt";
 import { either } from "fp-ts";
 
 type RegisterProps = {
@@ -40,7 +41,9 @@ const register = async (
       baseName: "users",
       payload: {
         item: {
-          ...props,
+          name: props.name,
+          email: props.email,
+          password: await hash(props.password, await genSalt(10)),
         },
       },
     });
