@@ -176,15 +176,22 @@ export default function NavbarComponent(props: NavbarComponentProps) {
             {/* Navbar auth actions for mobile */}
             <div className="mt-4">
               {props.authPayload ? (
-                // Show user avatar and logout option
-                <Avatar className="cursor-pointer">
-                  <AvatarImage src="https://github.com/shadcn.png" />
-                  <AvatarFallback>CN</AvatarFallback>
-                </Avatar>
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Avatar className="cursor-pointer">
+                      <AvatarImage src="https://github.com/shadcn.png" />
+                      <AvatarFallback>CN</AvatarFallback>
+                    </Avatar>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent>
+                    <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem>Logout</DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
               ) : (
-                // Show login button
                 <Link href={"/auth/login"}>
-                  <Button size={"sm"} className="flex items-center">
+                  <Button size={"sm"}>
                     <LogIn className="w-4 h-4 mr-2" />
                     Login
                   </Button>
