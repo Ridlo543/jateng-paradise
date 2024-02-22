@@ -1,13 +1,25 @@
+import { AuthRepository } from "@/lib/repositories/auth";
 import { LogIn } from "lucide-react";
 import Link from "next/link";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Button } from "./ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "./ui/dropdown-menu";
 
 type MenuItem = {
   title: string;
   href: string;
 };
 
-export default function NavbarComponent() {
+export default async function NavbarComponent() {
+  const authPayload = await AuthRepository.createSession();
+
   const menus: Array<MenuItem> = [
     { title: "Home", href: "/" },
     { title: "About us", href: "/about" },
@@ -37,12 +49,28 @@ export default function NavbarComponent() {
 
           {/* navbar auth actions */}
           <div>
-            <Link href={"/auth/login"}>
-              <Button size={"sm"}>
-                <LogIn className="w-4 h-4 mr-2" />
-                Login
-              </Button>
-            </Link>
+            {authPayload ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Avatar className="cursor-pointer">
+                    <AvatarImage src="https://github.com/shadcn.png" />
+                    <AvatarFallback>CN</AvatarFallback>
+                  </Avatar>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent>
+                  <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem>Logout</DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <Link href={"/auth/login"}>
+                <Button size={"sm"}>
+                  <LogIn className="w-4 h-4 mr-2" />
+                  Login
+                </Button>
+              </Link>
+            )}
           </div>
         </div>
       </div>
