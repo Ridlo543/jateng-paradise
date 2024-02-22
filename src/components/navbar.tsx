@@ -62,14 +62,14 @@ export default function NavbarComponent(props: NavbarComponentProps) {
     <header className="header z-30 sticky top-0 ">
       <nav
         className={cn(
-          "navbar container fixed  w-full transition-all duration-300 ",
+          "navbar fixed px-4 w-full transition-all duration-300 ",
           isAtTop
             ? "bg-transparent  backdrop-blur-sm"
             : "bg-white bg-opacity-60 bg-clip-padding backdrop-filter backdrop-blur-xl"
         )}
       >
         {/* navbar container */}
-        <div className="flex justify-between h-16 max-w-[1024px] px-4 mx-auto items-center">
+        <div className="flex justify-between h-16 max-w-[1024px] mx-auto items-center">
           {/* navbar title */}
           <Link href={"/"}>
             <Button
