@@ -18,6 +18,7 @@ import {
 import { set } from "fp-ts";
 import { JWTPayload } from "jose";
 import { cn } from "@/lib/utils";
+import path from "path";
 
 type MenuItem = {
   title: string;
@@ -40,6 +41,10 @@ export default function NavbarComponent(props: NavbarComponentProps) {
 
   useEffect(() => {
     if (pathname !== "/") {
+      setIsAtTop(false);
+    }
+
+    if(pathname === "/auth/login" || pathname === "/auth/register"){
       setIsAtTop(false);
     }
 
