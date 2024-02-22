@@ -2,6 +2,7 @@
 
 import { DetaSource } from "@/lib/sources/deta";
 import { Failure } from "@/lib/types/failure";
+import { compare } from "bcrypt";
 import { either } from "fp-ts";
 
 type LoginProps = {
@@ -30,7 +31,7 @@ const login = async (
       throw { message: "Email not found! Please register first" } as Failure;
 
     const userData = items.at(0);
-    if (props.password !== userData.password)
+    if (!(await compare(props.password, userData.password)))
       throw { message: "Incorrect password! Please try again" } as Failure;
 
     return either.right(true);
