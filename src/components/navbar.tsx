@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import { AuthRepository } from "@/lib/repositories/auth";
 import { LogIn } from "lucide-react";
 import Link from "next/link";
@@ -11,15 +14,21 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
+import { set } from "fp-ts";
+import { JWTPayload } from "jose";
+import { cn } from "@/lib/utils";
 
 type MenuItem = {
   title: string;
   href: string;
 };
 
-export default async function NavbarComponent() {
+type NavbarComponentProps = {
+  authPayload?: JWTPayload
+};
+export default function NavbarComponent(props: NavbarComponentProps) {
+  const [isAtTop, setIsAtTop] = useState(true);
   
-  const authPayload = await AuthRepository.createSession();
 
   const menus: Array<MenuItem> = [
     { title: "Home", href: "/" },
@@ -27,9 +36,23 @@ export default async function NavbarComponent() {
     { title: "Popular", href: "/popular" },
   ];
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const position = window.scrollY;
+      setIsAtTop(position === 0);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <>
-      <div className="h-16 w-full fixed top-0 border-b bg-white/70 backdrop-blur-sm z-50">
+      <div className={cn(
+        "h-16 w-full fixed top-0  backdrop-blur-sm z-50 transition-all duration-300", 
+        isAtTop ? "bg-transparent  " : "bg-white/70 text-gray-800 border-b",
+      )}>
         {/* navbar container */}
         <div className="flex justify-between h-16 max-w-[1024px] px-4 mx-auto items-center">
           {/* navbar title */}
@@ -50,7 +73,7 @@ export default async function NavbarComponent() {
 
           {/* navbar auth actions */}
           <div>
-            {authPayload ? (
+            {props.authPayload ? (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Avatar className="cursor-pointer">

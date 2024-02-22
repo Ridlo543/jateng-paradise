@@ -1,6 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Search } from "lucide-react";
+import { AlertCircle, Search } from "lucide-react";
 import Image from "next/image";
 import FilterContent from "./filterContent";
 
@@ -30,7 +30,7 @@ export default function Home() {
             Tak Ternilai di Jawa Tengah.
           </p>
           {/* searchbar */}
-          <div className="max-w-md mx-auto mt-4">
+          {/* <div className="max-w-md mx-auto mt-4">
             <div className="relative flex items-center w-full h-12 rounded-lg focus-within:shadow-lg bg-white overflow-hidden">
               <div className="grid place-items-center h-full w-12 text-gray-300">
                 <svg
@@ -56,10 +56,10 @@ export default function Home() {
                 placeholder="Explore"
               />
             </div>
-          </div>
+          </div> */}
 
           {/* search bar: by rizal */}
-          <Card className="flex items-center px-4 py-1 min-w-[480px]">
+          <Card className="flex items-center px-4 py-1 my-3 min-w-[480px]">
             <Search className="mr-2 text-card-foreground" />
             <Input
               placeholder="Explore a new place"
