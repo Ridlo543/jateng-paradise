@@ -28,6 +28,7 @@ type NavbarComponentProps = {
   authPayload?: JWTPayload;
 };
 export default function NavbarComponent(props: NavbarComponentProps) {
+  
   const pathname = usePathname();
   const [isAtTop, setIsAtTop] = useState(true);
 
