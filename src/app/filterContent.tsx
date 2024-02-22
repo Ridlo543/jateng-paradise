@@ -12,7 +12,7 @@ const places = [
   { id: 5, name: "Keraton Yogyakarta", category: "Grobogan" },
 ];
 
-// const categories = ["Semua Kategori", "Alam", "Budaya", "Sejarah"];
+// const categories = ["All", "Alam", "Budaya", "Sejarah"];
 const categories = [
   "All",
   "Banjarnegara",
@@ -62,31 +62,21 @@ export default function FilterContent() {
 
   return (
     <section className="mx-auto max-w-5xl py-6">
-      <div className="flex flex-wrap space-x-4 mb-4 items-center justify-center ">
-        {categories.map((category, index) => (
-          <button
-            key={index}
-            className={`p-2 border rounded m-1 ${
-              selectedCategory === category ||
-              (selectedCategory === "" && category === "Semua Kategori")
-                ? "bg-green-700 text-white"
-                : ""
-            }`}
-            onClick={() =>
-              handleCategoryChange(
-                category === "Semua Kategori" ? "" : category
-              )
-            }
-          >
-            {category}
-          </button>
-        ))}
-      </div>
+      
       <div>
         <ScrollArea>
           <div className="flex space-x-2 mb-4">
             {categories.map((item, index) => (
-              <Card className="px-4 py-2">
+              <Card
+                key={index}
+                className={`px-4 py-2 cursor-pointer ${
+                  selectedCategory === item ||
+                  (selectedCategory === "" && item === "All")
+                    ? "bg-green-700 text-white"
+                    : ""
+                }`}
+                onClick={() => handleCategoryChange(item === "All" ? "" : item)}
+              >
                 <p>{item}</p>
               </Card>
             ))}
