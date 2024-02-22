@@ -1,3 +1,4 @@
+import NavbarComponent from "@/components/navbar";
 import { Toaster } from "@/components/ui/toaster";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
@@ -24,7 +25,10 @@ export default function RootLayout({
         <meta name="description" content={metadata.description ?? ""} />
       </head>
       <body className={inter.className}>
-        <main>{children}</main>
+        <main>
+          <NavbarComponent />
+          {children}
+        </main>
         <Toaster />
       </body>
     </html>
