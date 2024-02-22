@@ -18,6 +18,7 @@ type MenuItem = {
 };
 
 export default async function NavbarComponent() {
+  
   const authPayload = await AuthRepository.createSession();
 
   const menus: Array<MenuItem> = [
@@ -28,7 +29,7 @@ export default async function NavbarComponent() {
 
   return (
     <>
-      <div className="h-16 w-full fixed top-0 border-b bg-white/70 backdrop-blur-sm">
+      <div className="h-16 w-full fixed top-0 border-b bg-white/70 backdrop-blur-sm z-50">
         {/* navbar container */}
         <div className="flex justify-between h-16 max-w-[1024px] px-4 mx-auto items-center">
           {/* navbar title */}

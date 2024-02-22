@@ -54,7 +54,7 @@ export default function FilterContent() {
   };
 
   const filteredPlaces =
-    selectedCategory && selectedCategory !== "Semua Kategori"
+    selectedCategory && selectedCategory !== "All"
       ? places.filter((place) => place.category === selectedCategory)
       : places;
 
