@@ -1,3 +1,6 @@
+import { Card } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Search } from "lucide-react";
 import Image from "next/image";
 import FilterContent from "./filterContent";
 
@@ -54,6 +57,15 @@ export default function Home() {
               />
             </div>
           </div>
+
+          {/* search bar: by rizal */}
+          <Card className="flex items-center px-4 py-1 min-w-[480px]">
+            <Search className="mr-2 text-card-foreground" />
+            <Input
+              placeholder="Explore a new place"
+              className="outline-none focus-visible:ring-0 focus-visible:ring-offset-0 border-none"
+            />
+          </Card>
         </div>
       </section>
       <FilterContent />
