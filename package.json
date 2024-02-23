@@ -33,7 +33,7 @@
     "react-dom": "^18",
     "react-hook-form": "^7.50.1",
     "remark": "^15.0.1",
-    "remark-gfm": "^4.0.0",
+    "remark-gfm": "^3.0.1",
     "remark-html": "^16.0.1",
     "sass": "^1.71.1",
     "tailwind-merge": "^2.2.1",
