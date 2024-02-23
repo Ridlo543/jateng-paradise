@@ -12,12 +12,12 @@ export const metadata: Metadata = {
   description: "Website Pariwisata Jawa Tengah",
 };
 
-export default async  function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-const authPayload = await AuthRepository.createSession();
+  const authPayload = await AuthRepository.createSession();
 
   return (
     <html lang="en">
