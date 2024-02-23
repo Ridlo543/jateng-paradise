@@ -4,7 +4,6 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { AuthRepository } from "@/lib/repositories/auth";
-import TwSizeIndicator from "@/layout/helpers/TwSizeIndicator";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -13,12 +12,12 @@ export const metadata: Metadata = {
   description: "Website Pariwisata Jawa Tengah",
 };
 
-export default async function RootLayout({
+export default async  function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
-  const authPayload = await AuthRepository.createSession();
+}>) {
+const authPayload = await AuthRepository.createSession();
 
   return (
     <html lang="en">
@@ -29,7 +28,6 @@ export default async function RootLayout({
         <meta name="description" content={metadata.description ?? ""} />
       </head>
       <body className={inter.className}>
-        {/* <TwSizeIndicator /> */}
         <main>
           <NavbarComponent authPayload={authPayload} />
           {children}
