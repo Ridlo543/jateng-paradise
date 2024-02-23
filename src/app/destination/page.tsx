@@ -1,25 +1,38 @@
-import fs from 'fs';
-import path from 'path';
-import markdownToHtml from '@/lib/utlis/markdownToHtml';
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { getSinglePage } from "@/lib/utils/contentParser";
 
-export default function Destination({ content }: { content: string }) {
-    return 
-    (
+import Link from "next/link";
+
+export default async function Test2Page() {
+  const data = getSinglePage("/");
+
+  return (
     <>
-    <h1>Cek MD to html</h1>
-    <div dangerouslySetInnerHTML={{ __html: content }} />
+      <div className="pt-16">
+        <p>Test 2 Page (MDX Content)</p>
+        <div className="grid grid-cols-2 gap-2">
+          {data.map((item, index) => (
+            <Card key={"card-item-" + index}>
+              <CardHeader>
+                <CardTitle>Title: {item.frontmatter.title}</CardTitle>
+                <CardDescription>{item.frontmatter.desc}</CardDescription>
+              </CardHeader>
+              <CardFooter>
+                <Link href={"/destination/" + item.slug}>
+                  <Button>Read more</Button>
+                </Link>
+              </CardFooter>
+            </Card>
+          ))}
+        </div>
+      </div>
     </>
-    );
-}
-
-export async function getStaticProps() {
-  const markdownPath = path.join(process.cwd(), 'content/destination/borobudur.md');
-  const markdownContent = fs.readFileSync(markdownPath, 'utf8');
-  const content = await markdownToHtml(markdownContent);
-
-  return {
-    props: {
-      content,
-    },
-  };
+  );
 }

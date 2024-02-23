@@ -12,7 +12,6 @@ const places = [
   { id: 5, name: "Keraton Yogyakarta", category: "Grobogan" },
 ];
 
-// const categories = ["All", "Alam", "Budaya", "Sejarah"];
 const categories = [
   "All",
   "Banjarnegara",
@@ -62,7 +61,6 @@ export default function FilterContent() {
 
   return (
     <section className="mx-auto max-w-5xl py-6">
-      
       <div>
         <ScrollArea>
           <div className="flex space-x-2 mb-4">

@@ -42,20 +42,18 @@ export default function NavbarComponent(props: NavbarComponentProps) {
   };
 
   useEffect(() => {
-    if (pathname !== "/") {
-      setIsAtTop(false);
-    } else {
-      setIsAtTop(true);
-    }
-
     const handleScroll = () => {
       const position = window.scrollY;
       setIsAtTop(position === 0);
     };
 
-    window.addEventListener("scroll", handleScroll);
-
-    return () => window.removeEventListener("scroll", handleScroll);
+    if (pathname === "/") {
+      window.addEventListener("scroll", handleScroll);
+      handleScroll();
+      return () => window.removeEventListener("scroll", handleScroll);
+    } else {
+      setIsAtTop(false);
+    }
   }, [pathname]);
 
   return (
