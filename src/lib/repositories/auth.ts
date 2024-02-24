@@ -4,7 +4,7 @@ import { JWTSource } from "../sources/jwt";
 
 const authTokenKey = "auth-token";
 
-const createSession = async (): Promise<JWTPayload | undefined> => {
+const readSession = async (): Promise<JWTPayload | undefined> => {
   const authToken = cookies().get(authTokenKey)?.value;
   if (authToken) {
     try {
@@ -21,6 +21,6 @@ const deleteSession = () => {
 };
 
 export const AuthRepository = {
-  createSession,
+  readSession,
   deleteSession,
 };
