@@ -9,6 +9,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Button } from "./ui/button";
+import Image from "next/image";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -72,12 +73,13 @@ export default function NavbarComponent(props: NavbarComponentProps) {
         <div className="flex justify-between h-16 max-w-[1024px] mx-auto items-center">
           {/* navbar title */}
           <Link href={"/"}>
-            <Button
-              variant={"link"}
-              className={cn("font-semibold", isAtTop ? "text-white" : "")}
-            >
-              Jateng Paradise
-            </Button>
+            <Image
+              src="/logoJatengParadise.png"
+              alt="Jateng Paradise"
+              width={100}
+              height={70}
+              className="cursor-pointer"
+            />
           </Link>
 
           {/* Navbar toggle button */}

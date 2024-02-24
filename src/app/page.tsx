@@ -39,8 +39,6 @@ export default function Home() {
           </Card>
         </div>
       </section>
-      {/* <FilterContent />
-      <ListContent /> */}
 
       <ListDestinations destinations={destinations} />
     </>
