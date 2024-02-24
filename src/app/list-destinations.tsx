@@ -59,8 +59,8 @@ export default function ListDestinations(props: Props) {
             if (selected === "all") return item;
             else return item.category === selected;
           })
-          .map((item) => (
-            <Card>
+          .map((item, index) => (
+            <Card key={"destination-card-item-" + index}>
               <CardHeader>
                 <CardTitle>{item.name}</CardTitle>
                 <CardDescription>{item.description}</CardDescription>

@@ -21,13 +21,10 @@ const readDestinationDetailBySlug = (
 
   if (fs.existsSync(filePath)) {
     const { data, content } = readMatterDataByFilename(slug + ".mdx");
-    const { name, description, category } = data;
 
     return {
-      name,
-      description,
+      ...data,
       slug,
-      category: (category as string).toLowerCase(),
       content,
     } as DestinationDetailItem;
   }
@@ -40,13 +37,10 @@ const readAllDestinations = (): Array<DestinationItem> => {
   const contents = fs.readdirSync(directoryContents);
 
   const result = contents.map((filename) => {
-    const matterData = readMatterDataByFilename(filename);
-    const { name, description, category } = matterData.data;
+    const { data } = readMatterDataByFilename(filename);
 
     return {
-      name,
-      description,
-      category: (category as string).toLowerCase(),
+      ...data,
       slug: filename.replace(/\.mdx?$/, ""),
     } as DestinationItem;
   });
