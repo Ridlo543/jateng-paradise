@@ -1,9 +1,9 @@
 import NavbarComponent from "@/components/navbar";
 import { Toaster } from "@/components/ui/toaster";
+import { AuthRepository } from "@/lib/repositories/auth";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { AuthRepository } from "@/lib/repositories/auth";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,7 +17,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const authPayload = await AuthRepository.createSession();
+  const authPayload = await AuthRepository.readSession();
 
   return (
     <html lang="en">
