@@ -12,11 +12,16 @@ import {
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { either } from "fp-ts";
+import { Eye, EyeOff } from "lucide-react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { register } from "./actions";
 
 export default function RegisterForm() {
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
   const registerFormScheme = z
     .object({
       name: z.string().min(1),
@@ -95,7 +100,25 @@ export default function RegisterForm() {
               <FormItem>
                 <FormLabel>Password</FormLabel>
                 <FormControl>
-                  <Input {...field} />
+                  <div className="flex items-center gap-2">
+                    <Input
+                      {...field}
+                      className="flex-1"
+                      type={showPassword ? "text" : "password"}
+                    />
+                    <Button
+                      type="button"
+                      variant={"secondary"}
+                      size={"icon"}
+                      onClick={() => setShowPassword(!showPassword)}
+                    >
+                      {showPassword ? (
+                        <EyeOff className="w-4 h-4" />
+                      ) : (
+                        <Eye className="w-4 h-4" />
+                      )}
+                    </Button>
+                  </div>
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -110,7 +133,27 @@ export default function RegisterForm() {
               <FormItem>
                 <FormLabel>Confirm password</FormLabel>
                 <FormControl>
-                  <Input {...field} />
+                  <div className="flex items-center gap-2">
+                    <Input
+                      {...field}
+                      className="flex-1"
+                      type={showConfirmPassword ? "text" : "password"}
+                    />
+                    <Button
+                      type="button"
+                      variant={"secondary"}
+                      size={"icon"}
+                      onClick={() =>
+                        setShowConfirmPassword(!showConfirmPassword)
+                      }
+                    >
+                      {showConfirmPassword ? (
+                        <EyeOff className="w-4 h-4" />
+                      ) : (
+                        <Eye className="w-4 h-4" />
+                      )}
+                    </Button>
+                  </div>
                 </FormControl>
                 <FormMessage />
               </FormItem>
