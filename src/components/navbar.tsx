@@ -3,7 +3,7 @@
 import { logout } from "@/app/actions";
 import { cn } from "@/lib/utils";
 import { JWTPayload } from "jose";
-import { LogIn } from "lucide-react";
+import { CircleUserRound, LogIn } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -136,15 +136,18 @@ export default function NavbarComponent(props: NavbarComponentProps) {
             {props.authPayload ? (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Avatar className="cursor-pointer">
-                    <AvatarImage src="https://github.com/shadcn.png" />
-                    <AvatarFallback>CN</AvatarFallback>
-                  </Avatar>
+                  <CircleUserRound
+                    className={cn(
+                      "w-8 h-8 cursor-pointer",
+                      isAtTop ? "text-white" : "text-black"
+                    )}
+                  />
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>
                   <DropdownMenuLabel>My Account</DropdownMenuLabel>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem
+                    className="cursor-pointer"
                     onClick={() => {
                       logout();
                       router.replace("/");
@@ -187,15 +190,18 @@ export default function NavbarComponent(props: NavbarComponentProps) {
               {props.authPayload ? (
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <Avatar className="cursor-pointer">
-                      <AvatarImage src="https://github.com/shadcn.png" />
-                      <AvatarFallback>CN</AvatarFallback>
-                    </Avatar>
+                    <CircleUserRound
+                      className={cn(
+                        "w-8 h-8 cursor-pointer",
+                        isAtTop ? "text-white" : "text-black"
+                      )}
+                    />
                   </DropdownMenuTrigger>
                   <DropdownMenuContent>
                     <DropdownMenuLabel>My Account</DropdownMenuLabel>
                     <DropdownMenuSeparator />
                     <DropdownMenuItem
+                      className="cursor-pointer"
                       onClick={() => {
                         logout();
                         router.replace("/");

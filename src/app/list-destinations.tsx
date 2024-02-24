@@ -25,10 +25,8 @@ export default function ListDestinations(props: Props) {
 
   return (
     <>
-      <p className="text-3xl font-semibold">List Destinations</p>
-
       {/* category filter */}
-      <div className="max-w-[768px] mx-auto px-4">
+      <div className="max-w-[768px] mx-auto px-4 py-6">
         <ScrollArea>
           <div className="flex space-x-2 mb-4">
             {Constants.categories.map((item, index) => {
@@ -38,7 +36,13 @@ export default function ListDestinations(props: Props) {
                 <Button
                   key={"category-filter-item-" + index}
                   onClick={() => setSelectedCategoryFilter(item)}
-                  variant={isSelected ? "default" : "outline"}
+                  variant={"outline"}
+                  className={` cursor-pointer hover:bg-green-800 hover:text-white
+                   ${
+                     isSelected
+                       ? "bg-green-700 text-white hover:bg-green-800"
+                       : ""
+                   }`}
                 >
                   {isSelected && <Check className="w-4 h-4 mr-2" />}
                   {item}
@@ -51,7 +55,7 @@ export default function ListDestinations(props: Props) {
       </div>
 
       {/* list destinations */}
-      <div className="mx-auto max-w-[768px] px-4 grid grid-cols-2 gap-2">
+      <div className="mx-auto max-w-5xl px-4 grid grid-cols-1 gap-4">
         {props.destinations
           .filter((item) => {
             const selected = selectedCategoryFilter.toLowerCase();
@@ -60,20 +64,29 @@ export default function ListDestinations(props: Props) {
             else return item.category === selected;
           })
           .map((item, index) => (
-            <Card key={"destination-card-item-" + index}>
-              <CardHeader>
-                <CardTitle>{item.name}</CardTitle>
-                <CardDescription>{item.description}</CardDescription>
-              </CardHeader>
-              <CardFooter>
-                <Link href={"/destination/" + item.slug}>
-                  <Button variant={"link"} className="px-0">
-                    Read more
-                    <ArrowRight className="w-4 h-4 ml-2" />
-                  </Button>
-                </Link>
-              </CardFooter>
-            </Card>
+            <div
+              key={"destination-card-item-" + index}
+              className="flex justify-center items-center"
+            >
+              {/* placeholder image */}
+              <div className=" w-1/2 h-[66vh] bg-gray-200 rounded-lg"></div>
+              <div className="flex-1 ml-4">
+                <Card>
+                  <CardHeader>
+                    <CardTitle>{item.name}</CardTitle>
+                    <CardDescription>{item.description}</CardDescription>
+                  </CardHeader>
+                  <CardFooter>
+                    <Link href={"/destination/" + item.slug}>
+                      <Button variant={"link"} className="px-0">
+                        Detail Tempat
+                        <ArrowRight className="w-4 h-4 ml-2" />
+                      </Button>
+                    </Link>
+                  </CardFooter>
+                </Card>
+              </div>
+            </div>
           ))}
       </div>
     </>
