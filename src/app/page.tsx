@@ -8,8 +8,6 @@ import ListDestinations from "./list-destinations";
 export default function Home() {
   const destinations = DestinationRepository.readAllDestinations();
 
-  console.log({ destinations });
-
   return (
     <>
       <section className="relative h-screen">

@@ -1,9 +1,12 @@
 "use client";
 
-import { usePathname } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import { logout } from "@/app/actions";
+import { cn } from "@/lib/utils";
+import { JWTPayload } from "jose";
 import { LogIn } from "lucide-react";
 import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Button } from "./ui/button";
 import {
@@ -14,8 +17,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
-import { JWTPayload } from "jose";
-import { cn } from "@/lib/utils";
 
 type MenuItem = {
   title: string;
@@ -28,6 +29,7 @@ type NavbarComponentProps = {
 
 export default function NavbarComponent(props: NavbarComponentProps) {
   const pathname = usePathname();
+  const router = useRouter();
   const [isAtTop, setIsAtTop] = useState(true);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -140,7 +142,14 @@ export default function NavbarComponent(props: NavbarComponentProps) {
                 <DropdownMenuContent>
                   <DropdownMenuLabel>My Account</DropdownMenuLabel>
                   <DropdownMenuSeparator />
-                  <DropdownMenuItem>Logout</DropdownMenuItem>
+                  <DropdownMenuItem
+                    onClick={() => {
+                      logout();
+                      router.replace("/");
+                    }}
+                  >
+                    Logout
+                  </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
             ) : (
@@ -184,7 +193,14 @@ export default function NavbarComponent(props: NavbarComponentProps) {
                   <DropdownMenuContent>
                     <DropdownMenuLabel>My Account</DropdownMenuLabel>
                     <DropdownMenuSeparator />
-                    <DropdownMenuItem>Logout</DropdownMenuItem>
+                    <DropdownMenuItem
+                      onClick={() => {
+                        logout();
+                        router.replace("/");
+                      }}
+                    >
+                      Logout
+                    </DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>
               ) : (
