@@ -1,3 +1,4 @@
+// List Content
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -10,7 +11,7 @@ import { getSinglePage } from "@/lib/repositories/contentParser";
 
 import Link from "next/link";
 
-export default async function Content() {
+export default async function ListContent() {
   const data = getSinglePage("/");
 
   return (

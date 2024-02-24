@@ -3,6 +3,7 @@ import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
 import Image from "next/image";
 import FilterContent from "./filterContent";
+import ListContent from "./ListContent";
 
 export default function Home() {
   return (
@@ -36,7 +37,8 @@ export default function Home() {
           </Card>
         </div>
       </section>
-      <FilterContent />
+      {/* <FilterContent /> */}
+      <ListContent />
     </>
   );
 }
