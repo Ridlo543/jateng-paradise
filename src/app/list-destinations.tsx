@@ -14,6 +14,7 @@ import { DestinationItem } from "@/lib/types/destination-item";
 import { ArrowRight, Check } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
+import Gallery from "./gallery";
 
 type Props = {
   destinations: Array<DestinationItem>;
@@ -66,10 +67,9 @@ export default function ListDestinations(props: Props) {
           .map((item, index) => (
             <div
               key={"destination-card-item-" + index}
-              className="flex justify-center items-center"
+              className="flex sm:flex-row flex-col justify-center items-center"
             >
-              {/* placeholder image */}
-              <div className=" w-1/2 h-[66vh] bg-gray-200 rounded-lg"></div>
+              <Gallery />
               <div className="flex-1 ml-4">
                 <Card>
                   <CardHeader>
