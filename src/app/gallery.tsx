@@ -52,8 +52,9 @@ export default function Gallery() {
                 <Image
                   src={image}
                   alt={`slide ${index + 1}`}
-                  layout="fill"
-                  objectFit="cover"
+                  fill
+                  className="object-cover"
+                  loading="eager"
                 />
               </div>
             </SwiperSlide>
