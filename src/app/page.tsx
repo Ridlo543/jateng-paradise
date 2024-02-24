@@ -1,11 +1,13 @@
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { DestinationRepository } from "@/lib/repositories/destination";
 import { Search } from "lucide-react";
 import Image from "next/image";
-import FilterContent from "./filterContent";
-import ListContent from "./ListContent";
+import ListDestinations from "./list-destinations";
 
 export default function Home() {
+  const destinations = DestinationRepository.readAllDestinations();
+
   return (
     <>
       <section className="relative h-screen">
@@ -37,8 +39,10 @@ export default function Home() {
           </Card>
         </div>
       </section>
-      {/* <FilterContent /> */}
-      <ListContent />
+      {/* <FilterContent />
+      <ListContent /> */}
+
+      <ListDestinations destinations={destinations} />
     </>
   );
 }

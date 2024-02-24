@@ -1,22 +1,37 @@
-import { getMDXContent } from "@/lib/utils/mdxUtils";
+import { DestinationRepository } from "@/lib/repositories/destination";
+import { MDXRemote } from "next-mdx-remote/rsc";
+import remarkGfm from "remark-gfm";
 
 type Props = {
   params: { slug: string };
 };
 
 export default async function Page({ params }: Props) {
-  const { slug } = params;
-  const { content, frontmatter } = await getMDXContent(
-    slug,
-    "src/contents"
+  const destinationDetail = DestinationRepository.readDestinationDetailBySlug(
+    params.slug
   );
+
+  // const { slug } = params;
+  // const { content, frontmatter } = await getMDXContent(
+  //   slug,
+  //   "src/contents"
+  // );
 
   return (
     <>
-      <div className="pt-16">
-        <p>title: {frontmatter.title as string}</p>
-        <p>desc: {frontmatter.desc as string}</p>
-        <div className="prose">{content}</div>
+      <div className="pt-16 mx-auto max-w-[768px] px-4">
+        <p className="text-3xl font-semibold">{destinationDetail?.name}</p>
+        <p>{destinationDetail?.description}</p>
+        <div className="prose">
+          <MDXRemote
+            options={{
+              mdxOptions: {
+                remarkPlugins: [remarkGfm],
+              },
+            }}
+            source={destinationDetail?.content ?? "Tidak ada konten"}
+          />
+        </div>
         <p>Comment section</p>
       </div>
     </>
