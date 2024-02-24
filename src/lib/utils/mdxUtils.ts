@@ -28,16 +28,3 @@ export async function getMDXContent(slug: string, dirContents: string) {
 
   return { content, frontmatter };
 }
-
-// export async function processMDXFile(filePath: string): Promise<MDXContent> {
-//   const sourceStr = readFileSync(filePath, 'utf-8');
-//   const sourceMdx = await serialize(sourceStr, {
-//     parseFrontmatter: true,
-//   });
-
-//   return {
-//     title: sourceMdx.frontmatter.title as string,
-//     desc: sourceMdx.frontmatter.desc as string,
-//     slug: path.basename(filePath, '.mdx'),
-//   };
-// }

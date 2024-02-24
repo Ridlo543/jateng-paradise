@@ -50,7 +50,7 @@ export const getSinglePage = (folder: string) => {
   );
 
   let singlePages = filterSingleFiles.map((filename) => {
-    const slug = filename.replace(/\.mdx?$/, ""); 
+    const slug = filename.replace(/\.mdx?$/, "");
     const filePath = path.join(folderPath, filename);
     const pageData = readFile(filePath);
     const { content, data: frontmatter } = matter(pageData);
@@ -65,20 +65,18 @@ export const getSinglePage = (folder: string) => {
 
   const publishedPages = singlePages.filter((page) => !page.frontmatter.draft);
 
-  // sort
-  for (let i = 0; i < publishedPages.length - 1; i++) {
-    for (let j = 0; j < publishedPages.length - i - 1; j++) {
-      if (
-        publishedPages[j].frontmatter.name.toUpperCase() >
-        publishedPages[j + 1].frontmatter.name.toUpperCase()
-      ) {
-        // Swap
-        let temp = publishedPages[j];
-        publishedPages[j] = publishedPages[j + 1];
-        publishedPages[j + 1] = temp;
-      }
+  const sortedPages = publishedPages.sort((a, b) => {
+    const titleA = a.frontmatter.name.toUpperCase();
+    const titleB = b.frontmatter.name.toUpperCase();
+    if (titleA < titleB) {
+      return -1;
     }
-  }
+    if (titleA > titleB) {
+      return 1;
+    }
 
-  return publishedPages;
+    return 0;
+  });
+
+  return sortedPages;
 };
