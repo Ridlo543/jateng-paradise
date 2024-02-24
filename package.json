@@ -23,6 +23,8 @@
     "bcrypt": "^5.1.1",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
+    "embla-carousel-autoplay": "^8.0.0",
+    "embla-carousel-react": "^8.0.0",
     "fp-ts": "^2.16.2",
     "jose": "^5.2.2",
     "lucide-react": "^0.335.0",
