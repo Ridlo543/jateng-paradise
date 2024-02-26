@@ -47,10 +47,8 @@ export default async function RootLayout({
         <link rel="manifest" href="/site.webmanifest" />
       </head>
       <body className={inter.className}>
-        <main>
-          <NavbarComponent authPayload={authPayload} />
-          {children}
-        </main>
+        <NavbarComponent authPayload={authPayload} />
+        <main>{children}</main>
         <Toaster />
       </body>
     </html>
