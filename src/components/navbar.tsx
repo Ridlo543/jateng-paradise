@@ -3,7 +3,7 @@
 import { logout } from "@/app/actions";
 import { cn } from "@/lib/utils";
 import { JWTPayload } from "jose";
-import { CircleUserRound, LogIn } from "lucide-react";
+import { CircleUserRound, LogIn, Search } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -129,6 +129,13 @@ export default function NavbarComponent(props: NavbarComponentProps) {
                 </Button>
               </Link>
             ))}
+            <button
+              className="flex flex-row justify-center items-center"
+              aria-label="search"
+              data-search-trigger
+            >
+              <Search className="mr-2 " />
+            </button>
           </div>
 
           {/* navbar auth actions */}

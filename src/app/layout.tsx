@@ -4,6 +4,8 @@ import { AuthRepository } from "@/lib/repositories/auth";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import "../styles/main.scss";
+import SearchModal from "@/components/SearchModal";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -44,11 +46,14 @@ export default async function RootLayout({
           sizes="16x16"
           href="/favicon-16x16.png"
         />
-        <link rel="manifest" href="/site.webmanifest" />
       </head>
       <body className={inter.className}>
         <NavbarComponent authPayload={authPayload} />
-        <main>{children}</main>
+
+        <main>
+          <SearchModal />
+          {children}
+        </main>
         <Toaster />
       </body>
     </html>

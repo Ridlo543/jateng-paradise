@@ -30,13 +30,13 @@ export default function Home() {
             Tak Ternilai di Jawa Tengah.
           </p>
 
-          <Card className="flex items-center px-4 py-2 my-3 w-full max-w-md sm:max-w-lg md:max-w-xl lg:min-w-[480px]">
-            <Search className="mr-2 text-card-foreground" />
-            <Input
-              placeholder="Explore a new place"
-              className="w-full outline-none focus-visible:ring-0 focus-visible:ring-offset-0 border-none"
-            />
-          </Card>
+          <button
+              className="flex flex-row justify-center items-center"
+              aria-label="search"
+              data-search-trigger
+            >
+              <Search className="mr-2 " />
+            </button>
         </div>
       </section>
 

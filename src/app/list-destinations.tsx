@@ -70,6 +70,7 @@ export default function ListDestinations(props: Props) {
               className="flex sm:flex-row flex-col justify-center items-center"
             >
               <Gallery />
+              
               <div className="flex-1 ml-4">
                 <Card>
                   <CardHeader>

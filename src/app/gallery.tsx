@@ -22,7 +22,7 @@ export default function Gallery() {
         grabCursor={true}
         centeredSlides={true}
         loop={true}
-        slidesPerView="auto"
+        slidesPerView={"auto"}
         coverflowEffect={{
           rotate: 0,
           stretch: 0,
@@ -34,7 +34,7 @@ export default function Gallery() {
         navigation={true}
         breakpoints={{
           340: {
-            slidesPerView: 1.5,
+            slidesPerView: 1.4,
           },
           640: {
             slidesPerView: 1.75,
@@ -49,11 +49,10 @@ export default function Gallery() {
               className="swiper-slide flex justify-center items-center rounded-2xl overflow-hidden blur-none transition-all duration-500 ease-in-out shadow-xl"
             >
               <div className="h-[350px] w-auto ">
-                <Image
-                  src={image}
+                <img
+                  src={image.src}
                   alt={`slide ${index + 1}`}
-                  fill
-                  className="object-cover"
+                  className="object-cover "
                   loading="eager"
                 />
               </div>
