@@ -46,6 +46,8 @@ export default async function RootLayout({
           sizes="16x16"
           href="/favicon-16x16.png"
         />
+        {/* site.webmanifest */}
+        <link rel="manifest" href="/site.webmanifest" />
       </head>
       <body className={inter.className}>
         <NavbarComponent authPayload={authPayload} />
