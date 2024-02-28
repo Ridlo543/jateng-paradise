@@ -26,37 +26,38 @@ export default function ListDestinations(props: Props) {
 
   return (
     <>
-      {/* category filter */}
-      <div className="max-w-[768px] mx-auto px-4 py-6">
-        <ScrollArea>
-          <div className="flex space-x-2 mb-4">
-            {Constants.categories.map((item, index) => {
-              const isSelected = selectedCategoryFilter === item;
+      <div className="absolute top-full left-0 w-full z-10 bg-opacity-0">
+        <div className="max-w-[768px] mx-auto px-4 py-6">
+          <ScrollArea>
+            <div className="flex space-x-2 mb-4">
+              {Constants.categories.map((item, index) => {
+                const isSelected = selectedCategoryFilter === item;
 
-              return (
-                <Button
-                  key={"category-filter-item-" + index}
-                  onClick={() => setSelectedCategoryFilter(item)}
-                  variant={"outline"}
-                  className={` cursor-pointer hover:bg-green-800 hover:text-white
+                return (
+                  <Button
+                    key={"category-filter-item-" + index}
+                    onClick={() => setSelectedCategoryFilter(item)}
+                    
+                    className={` cursor-pointer hover:bg-green-800 hover:text-white
                    ${
                      isSelected
                        ? "bg-green-700 text-white hover:bg-green-800"
-                       : ""
+                       : "bg-white text-black"
                    }`}
-                >
-                  {isSelected && <Check className="w-4 h-4 mr-2" />}
-                  {item}
-                </Button>
-              );
-            })}
-          </div>
-          <ScrollBar orientation="horizontal" />
-        </ScrollArea>
+                  >
+                    {isSelected && <Check className="w-4 h-4 mr-2" />}
+                    {item}
+                  </Button>
+                );
+              })}
+            </div>
+            <ScrollBar orientation="horizontal" />
+          </ScrollArea>
+        </div>
       </div>
 
       {/* list destinations */}
-      <div className="mx-auto max-w-5xl px-4 grid grid-cols-1 gap-4">
+      <div className=" grid grid-cols-1">
         {props.destinations
           .filter((item) => {
             const selected = selectedCategoryFilter.toLowerCase();
@@ -67,26 +68,28 @@ export default function ListDestinations(props: Props) {
           .map((item, index) => (
             <div
               key={"destination-card-item-" + index}
-              className="flex sm:flex-row flex-col justify-center items-center"
+              className="relative h-screen flex flex-col sm:flex-row justify-center items-center bg-center bg-fixed bg-no-repeat bg-cover px-4"
+              style={{
+                backgroundImage: `url(${item.background})`,
+                minHeight: "66vh",
+              }}
             >
-              <Gallery />
-              
-              <div className="flex-1 ml-4">
-                <Card>
-                  <CardHeader>
-                    <CardTitle>{item.name}</CardTitle>
-                    <CardDescription>{item.description}</CardDescription>
-                  </CardHeader>
-                  <CardFooter>
-                    <Link href={"/destination/" + item.slug}>
-                      <Button variant={"link"} className="px-0">
-                        Detail Tempat
-                        <ArrowRight className="w-4 h-4 ml-2" />
-                      </Button>
-                    </Link>
-                  </CardFooter>
-                </Card>
+              <div className="flex-1 mr-4 bg-black bg-opacity-50 rounded-lg p-4">
+                <CardHeader>
+                  <CardTitle className="text-white">{item.name}</CardTitle>
+                  <CardDescription className="text-gray-300">
+                    {item.description}
+                  </CardDescription>
+                </CardHeader>
+                <CardFooter>
+                  <Link href={"/destination/" + item.slug}>
+                    <Button variant={"link"} className="px-0 text-white">
+                      Detail Tempat <ArrowRight className="w-4 h-4 ml-2" />
+                    </Button>
+                  </Link>
+                </CardFooter>
               </div>
+              <div className="w-1/2 h-[66vh] bg-gray-200 bg-opacity-50 rounded-lg"></div>
             </div>
           ))}
       </div>

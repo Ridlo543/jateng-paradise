@@ -5,4 +5,5 @@ export type DestinationItem = {
   description: string;
   category: string;
   slug: string;
+  background: string;
 };

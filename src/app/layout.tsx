@@ -3,7 +3,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { AuthRepository } from "@/lib/repositories/auth";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
+// import "./globals.css";
 import "../styles/main.scss";
 import SearchModal from "@/components/SearchModal";
 

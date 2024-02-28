@@ -65,8 +65,8 @@ export default function NavbarComponent(props: NavbarComponentProps) {
         className={cn(
           "navbar fixed px-4 w-full transition-all duration-300 ",
           isAtTop
-            ? "bg-transparent  backdrop-blur-sm"
-            : "bg-white bg-opacity-60 bg-clip-padding backdrop-filter backdrop-blur-xl"
+            ? "bg-transparent"
+            : "bg-[#212529] bg-opacity-10 bg-clip-padding backdrop-filter backdrop-blur-xl"
         )}
       >
         {/* navbar container */}
@@ -86,7 +86,7 @@ export default function NavbarComponent(props: NavbarComponentProps) {
           <button
             className={cn(
               "md:hidden inline-flex items-center justify-center p-2 rounded-md cursor-pointer",
-              isAtTop ? "text-white" : ""
+              isAtTop ? "text-white" : "text-white"
             )}
             onClick={toggleMenu}
             aria-label={isMenuOpen ? "Close menu" : "Open menu"}
@@ -116,30 +116,33 @@ export default function NavbarComponent(props: NavbarComponentProps) {
           <div
             className={cn(
               "hidden md:flex md:space-x-4",
-              isAtTop ? "text-white" : ""
+              isAtTop ? "text-white" : "text-white"
             )}
           >
             {menus.map((item, index) => (
               <Link href={item.href} key={"navbar-menu-item-" + index}>
                 <Button
                   variant={"link"}
-                  className={cn("font-semibold", isAtTop ? "text-white" : "")}
+                  className={cn(
+                    "font-semibold",
+                    isAtTop ? "text-white" : "text-white"
+                  )}
                 >
                   {item.title}
                 </Button>
               </Link>
             ))}
+          </div>
+
+          {/* navbar auth actions */}
+          <div className="hidden md:flex md:items-center">
             <button
-              className="flex flex-row justify-center items-center"
+              className="flex flex-row justify-center items-center text-white  mr-2 border-r-2"
               aria-label="search"
               data-search-trigger
             >
               <Search className="mr-2 " />
             </button>
-          </div>
-
-          {/* navbar auth actions */}
-          <div className="hidden md:flex md:items-center">
             {props.authPayload ? (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
