@@ -90,7 +90,8 @@ export default function ListDestinations(props: Props) {
                   </CardFooter>
                 </div>
 
-                <div className="w-1/2 h-[66vh] my-4 bg-gray-200 bg-opacity-50 rounded-lg"></div>
+                {/* <div className="w-1/2 h-[66vh] my-4 bg-gray-200 bg-opacity-50 rounded-lg"></div> */}
+                <Gallery />
               </div>
             </div>
           ))}

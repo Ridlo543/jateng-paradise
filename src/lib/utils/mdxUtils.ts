@@ -10,7 +10,6 @@ export interface MDXContent {
   slug: string;
 }
 
-
 export async function getMDXContent(slug: string, dirContents: string) {
   // const dirContents = path.join(process.cwd(), path);
   const filename = `${slug}.mdx`;
